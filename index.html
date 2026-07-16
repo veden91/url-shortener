@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+
+    <style>
+        body{
+            margin:0;
+            font-family:Arial, Helvetica, sans-serif;
+            background:#f4f4f4;
+        }
+
+        .container{
+            width:450px;
+            margin:80px auto;
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,0.2);
+            text-align:center;
+        }
+
+        h1{
+            color:#333;
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            margin:15px 0;
+            font-size:16px;
+            box-sizing:border-box;
+        }
+
+        button{
+            padding:12px 25px;
+            font-size:16px;
+            cursor:pointer;
+            border:none;
+            background:#007BFF;
+            color:white;
+            border-radius:5px;
+        }
+
+        button:hover{
+            background:#0056b3;
+        }
+
+        .result{
+            margin-top:25px;
+            padding:15px;
+            background:#e8f5e9;
+            border-radius:5px;
+        }
+
+        a{
+            color:#0066cc;
+            word-break:break-all;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>URL Shortener</h1>
+
+    <form action="/shorten" method="POST">
+
+        <input
+            type="url"
+            name="url"
+            placeholder="Enter your long URL"
+            required>
+
+        <button type="submit">
+            Shorten URL
+        </button>
+        <br><br>
+
+        <a href="/dashboard">
+           <button type="button">
+            View Analytics
+            </button>
+        </a>
+
+    </form>
+
+    {% if short_url %}
+    <div class="result">
+
+        <h3>Your Short URL</h3>
+
+        <a href="{{ short_url }}" target="_blank">
+            {{ short_url }}
+        </a>
+
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

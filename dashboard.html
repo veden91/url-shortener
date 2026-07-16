@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analytics Dashboard</title>
+
+    <style>
+        body{
+            font-family:Arial, sans-serif;
+            background:#f4f4f4;
+            padding:30px;
+        }
+
+        h1{
+            text-align:center;
+        }
+
+        .cards{
+            display:flex;
+            gap:20px;
+            justify-content:center;
+            margin-bottom:30px;
+        }
+
+        .card{
+            background:white;
+            padding:20px;
+            width:200px;
+            border-radius:10px;
+            text-align:center;
+            box-shadow:0 0 10px rgba(0,0,0,.15);
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            background:white;
+        }
+
+        th,td{
+            border:1px solid #ddd;
+            padding:12px;
+            text-align:center;
+        }
+
+        th{
+            background:#007BFF;
+            color:white;
+        }
+
+        tr:nth-child(even){
+            background:#f8f8f8;
+        }
+
+        a{
+            text-decoration:none;
+            color:#007BFF;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<h1>Analytics Dashboard</h1>
+
+<div class="cards">
+
+<div class="card">
+<h2>{{ total_urls }}</h2>
+<p>Total URLs</p>
+</div>
+
+<div class="card">
+<h2>{{ total_clicks }}</h2>
+<p>Total Clicks</p>
+</div>
+
+</div>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Original URL</th>
+<th>Short Code</th>
+<th>Domain</th>
+<th>Clicks</th>
+<th>Created</th>
+</tr>
+
+{% for url in urls %}
+
+<tr>
+
+<td>{{ url.id }}</td>
+
+<td>{{ url.original_url }}</td>
+
+<td>
+<a href="/{{ url.short_code }}" target="_blank">
+{{ url.short_code }}
+</a>
+</td>
+
+<td>{{ url.domain }}</td>
+
+<td>{{ url.total_clicks }}</td>
+
+<td>{{ url.created_at.strftime("%d-%m-%Y %H:%M") }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/home">← Back to Home</a>
+
+</body>
+</html>
